@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static',filename='css/style.css') }}">
+    <title>My Flask App</title>
+    <title></title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href= />Home</a>
+        <a href=/service1>Say Hello</a> <a href=/service2>Sum </a> <a href=/service3>List Hello</a> <a class="active"
+            href=/service4>Consulta Pokemon</a> </div> {% block content %} {% from 'macros.html' import render_field %}
+            <form class="" method="post">
+            <br>
+            <table style="width:20%; border-style: none" > 
+                <tr>
+                    <td>
+                        {{ render_field(form.pokemon) }}
+                    </td>
+                    <td>
+                        <button type="submit" class="btn success" name="consulta_pokemon">Enviar</button>
+                    </td>
+                </tr>
+
+            </table>
+            <br>
+            <div class="">
+                {% if data %}
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Sprite</th>
+                        <th>Total</th>
+                        <th>HP</th>
+                        <th>Attack</th>
+                        <th>Defense</th>
+                        <th>Special Attack</th>
+                        <th>Special Defense</th>
+                        <th>Speed</th>
+                        <th>Generación</th>
+                    </tr>
+                    <tr>
+                        <td>{{ data["id"] }}</td>
+                        <td>{{ data["nombre"] }}</td>
+                        <td><img src={{ 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/{}.png'.format(data["id"]) }}
+                                alt={{ data["nombre"] }}></td>
+                        <td>{{ data["total"] }}</td>
+                        <td>{{ data["hp"] }}</td>
+                        <td>{{ data["attack"] }}</td>
+                        <td>{{ data["defense"] }}</td>
+                        <td>{{ data["specialAttack"] }}</td>
+                        <td>{{ data["specialDefense"] }}</td>
+                        <td>{{ data["speed"] }}</td>
+                        <td>{{ data["generation"] }}</td>
+                    </tr>
+                </table>
+                <img src={{ 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{}.png'.format(data["id"]) }}
+                    alt={{ data["nombre"] }} width="300" height="300">
+
+                {% endif%}
+            </div>
+            </form>
+            {% endblock %}
+</body>
+
+</html>
