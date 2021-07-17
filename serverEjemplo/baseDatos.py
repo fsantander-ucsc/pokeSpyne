@@ -25,4 +25,5 @@ class baseDatos:
             #imprimir el elemento que responde a nombre
             print(y["nombre"])
             #ya acá retorno el objeto para devolverlo al cliente
+            #asd
             return json_dump
