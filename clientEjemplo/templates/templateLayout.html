@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Poke Servicios</title>
+    <title></title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href= />Home</a>
+        <a href=/service1 class="{% block service1 %}{% endblock %}">Say Hello</a> 
+        <a href=/service2 class="{% block service2 %}{% endblock %}">Sum </a> 
+        <a href=/service3 class="{% block service4 %}{% endblock %}">List Hello</a> 
+        <a href=/ConsultaPokemon class="{% block ConsultaPokemon %}{% endblock %}">Consulta Pokemon</a> 
+        <a href=/SafariPokemon class="{% block SafariPokemon %}{% endblock %}">Safari Pokemon</a> 
+    </div> 
+
+    {% block content_layout %}
+    <!-- Acá se crea se crea su codigo -->
+    {% endblock %}
+
+</body>
+
+</html>

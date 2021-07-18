@@ -50,14 +50,22 @@ def service3():
         myList = rpc_client.service.list_hello(list_hello_form.name.data,list_hello_form.times.data)
     return render_template('services/list_hello.html',form = list_hello_form, data = myList)
 
-@app.route('/service4',methods=['GET','POST'])
-def service4():
+@app.route('/ConsultaPokemon',methods=['GET','POST'])
+def consultaPokemon():
     consultaPokemon = forms.consultaPokemon(request.form)
     data=None
     if request.method == 'POST':
         data = rpc_client.service.consultaPokemon(consultaPokemon.pokemon.data)
         data = json.loads(data)
     return render_template('services/consulta_pokemon.html',form = consultaPokemon, data = data)
+
+@app.route('/SafariPokemon',methods=['GET','POST'])
+def safari():
+    hello_form = forms.HelloForm(request.form)
+    data=None
+    if request.method == 'POST':
+        data = rpc_client.service.say_hello(hello_form.name.data)
+    return render_template('services/safari_pokemon.html',form = hello_form, data = data)
 
 # Parámentros de inicio de la aplicación
 if __name__ == '__main__':
