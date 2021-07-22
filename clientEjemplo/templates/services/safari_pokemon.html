@@ -3,24 +3,24 @@
 <!-- Definen Cuál es su link activo -->
 {% block SafariPokemon %}active{% endblock %}
 
-<!-- Escritura del dentro del layout, básicamente su función va acá -->
+<!-- Escritura dentro del layout, básicamente su función va acá -->
 {% block content_layout %}
 
 {% block content %}
 {% from 'macros.html' import render_field %}
-<form class="" method="post">
-    <div class="">
-        {{ render_field(form.name) }}
-    </div>
-    <div class="">
-        <button type="submit" class="btn success" name="sendHello">Enviar</button>
-    </div>
-    <div class="">
-        {% if data %}
-        {{ data }}
-        {% endif%}
-    </div>
-</form>
+
+    <form class="" method="post">
+        <div class="">
+            <button type="submit" class="btn success" name="sendHello">Enviar</button>
+        </div>
+
+        <div class="">
+            {% if data %}
+            {{ data }}
+            {% endif%}
+        </div>
+    </form>
+    
 {% endblock %}
 
 {% endblock %}

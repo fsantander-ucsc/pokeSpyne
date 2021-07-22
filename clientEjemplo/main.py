@@ -61,11 +61,12 @@ def consultaPokemon():
 
 @app.route('/SafariPokemon',methods=['GET','POST'])
 def safari():
-    hello_form = forms.HelloForm(request.form)
     data=None
     if request.method == 'POST':
-        data = rpc_client.service.say_hello(hello_form.name.data)
-    return render_template('services/safari_pokemon.html',form = hello_form, data = data)
+        data = rpc_client.service.safariPokemon()
+        print("data")
+        data = json.loads(data)
+    return render_template('services/safari_pokemon.html', data = data)
 
 # Parámentros de inicio de la aplicación
 if __name__ == '__main__':

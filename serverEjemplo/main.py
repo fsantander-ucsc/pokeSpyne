@@ -49,6 +49,12 @@ class Pokemon(ServiceBase):
         elemento = baseDatos()        
         return elemento.recuperarStatsPokemon(idPokemon);
 
+    @rpc( _returns = Unicode)
+    def safariPokemon(ctx):
+        print("entrada")
+        elemento = baseDatos()        
+        return elemento.safariPokemon();
+
 
 #Crear un ejemplar de la aplicación, indicando los protocolos de entrada y salidad.
 application = Application([Pokemon],'spyne.examples.hello.soap',
