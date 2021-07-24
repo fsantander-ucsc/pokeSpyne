@@ -9,18 +9,61 @@
 {% block content %}
 {% from 'macros.html' import render_field %}
 
-    <form class="" method="post">
-        <div class="">
-            <button type="submit" class="btn success" name="sendHello">Enviar</button>
-        </div>
+<form class="" method="post">
+    <br>
+    <div class="">
+        {% if data %}
+        <button type="submit" class="btn disabled" disabled>Comenzar Safari</button>
+        {% else %}
+        <button type="submit" class="btn success" id="accion" name="accion" value="init">Comenzar Safari</button>
+        {% endif%}
+    </div>
+    <br>
+    <div class="">
+        {% if data %}
 
-        <div class="">
-            {% if data %}
-            {{ data }}
-            {% endif%}
-        </div>
-    </form>
-    
+        <h3> {{ data["msg"] }} </h3>
+        {{ data }}
+        <br>
+        <table style="width: auto">
+            <tr>
+                <td>
+                    <img src={{ 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{}.png'.format(data["id"]) }}
+                        alt={{ data["nombre"] }} width="300" height="300">
+                </td>
+                {% if data["estado"] %}
+                <td>
+                    <table style="width: auto">
+                        <tr>
+                            <td><button type="submit" class="btn success" id="accion" name="accion"
+                                    value="pokebola">Pokebola</button></td>
+                            <td><button type="submit" class="btn success" id="accion" name="accion"
+                                    value="baya">Baya</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><button type="submit" class="btn success" id="accion" name="accion"
+                                    value="piedra">Piedra</button>
+                            </td>
+                            <td><button type="submit" class="btn success" id="accion" name="accion"
+                                    value="huir">Huir</button></td>
+                        </tr>
+                    </table>
+                </td>
+
+                {% endif%}
+            </tr>
+            
+        </table>
+
+        {% endif%}
+    </div>
+
+
+</form>
+
+
+
 {% endblock %}
 
 {% endblock %}

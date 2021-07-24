@@ -7,6 +7,9 @@ import json
 #Clase principal, donde se inician los servicios (Objeto remoto)
 
 class Pokemon(ServiceBase):
+
+    elemento = baseDatos()   
+
     """Tres comillas para documentar"""
     #Servicio de Saludo
     #Servicio saludo
@@ -51,11 +54,20 @@ class Pokemon(ServiceBase):
 
     @rpc( _returns = Unicode)
     def safariPokemon(ctx):
-        
-        print("entrada")
-        elemento = baseDatos()        
-        return elemento.safariPokemon();
 
+        return Pokemon.elemento.safariPokemon();
+    @rpc(_returns = Unicode)
+    def arrojarPokebola(ctx):    
+        return Pokemon.elemento.arrojarPokebola();
+    @rpc(_returns = Unicode)
+    def arrojarBaya(ctx):    
+        return Pokemon.elemento.arrojarBaya();
+    @rpc(_returns = Unicode)
+    def arrojarPiedra(ctx):    
+        return Pokemon.elemento.arrojarPiedra();
+    @rpc(_returns = Unicode)
+    def huir(ctx):    
+        return Pokemon.elemento.huir();
 
 #Crear un ejemplar de la aplicación, indicando los protocolos de entrada y salidad.
 application = Application([Pokemon],'spyne.examples.hello.soap',

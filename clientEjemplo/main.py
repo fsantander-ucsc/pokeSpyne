@@ -63,9 +63,20 @@ def consultaPokemon():
 def safari():
     data=None
     if request.method == 'POST':
-        data = rpc_client.service.safariPokemon()
-        print("data")
-        data = json.loads(data)
+        mensaje = request.form["accion"]
+        if mensaje =="init":
+            data = rpc_client.service.safariPokemon()
+        elif mensaje =="pokebola":
+            data = rpc_client.service.arrojarPokebola()
+        elif mensaje == "baya":
+            data = rpc_client.service.arrojarBaya()
+        elif mensaje == "piedra":
+            data = rpc_client.service.arrojarPiedra()
+        elif mensaje == "huir":
+            data = rpc_client.service.huir()
+       
+        data = json.loads(data)        
+        
     return render_template('services/safari_pokemon.html', data = data)
 
 # Parámentros de inicio de la aplicación

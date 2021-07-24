@@ -18,4 +18,7 @@ class ListHelloForm(Form):
 
 class consultaPokemon(Form):
     """docstring for SumForm."""
-    pokemon = IntegerField('pokemon')
+    pokemon = IntegerField('ID Pokémon')
+class safariPokemon(Form):
+    """docstring for SumForm."""
+    opcion = IntegerField()
