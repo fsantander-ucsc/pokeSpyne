@@ -1,0 +1,55 @@
+<!-- Extienden su Layout -->
+{% extends 'templateLayout.html' %}
+<!-- Definen Cuál es su link activo -->
+{% block pokehoroscopo %}active{% endblock %}
+
+<!-- Escritura del dentro del layout, básicamente su función va acá -->
+{% block content_layout %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Pokehoroscopo</title>
+</head>
+<body>
+{% block content %}    
+    {% from 'macros.html' import render_field %}
+    <div class="">
+        <form class="" method="post">
+            
+            <table style="width:10%; border-style: none">
+                <tr>
+                    <td>
+                        {{ render_field(form.anho) }}
+                    </td>
+                    <td>
+                        <button type="submit" class="btn success" name="consulta_pokemon">Enviar</button>
+                    </td>
+                </tr>
+            </table>
+            <div class="">
+                {% if data %}
+                <table>
+                    <tr>
+                        <th>Pokemon Zodiacal</th>
+                    </tr>
+                    <tr>
+                        <td>{{ data["nombre"] }}</td>
+                    </tr>
+                </table>
+                {% if data %}
+                <img src={{ 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{}.png'.format(data["id"]) }}
+                        alt={{ data["nombre"] }} width="300" height="300">
+                {% endif %}
+        
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+{%  endblock %}
+</body>
+</html>
+{%  endblock %}

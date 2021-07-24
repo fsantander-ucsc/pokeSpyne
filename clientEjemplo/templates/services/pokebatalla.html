@@ -1,0 +1,55 @@
+<!-- Extienden su Layout -->
+{% extends 'templateLayout.html' %}
+<!-- Definen Cuál es su link activo -->
+{% block pokebatalla %}active{% endblock %}
+
+<!-- Escritura del dentro del layout, básicamente su función va acá -->
+{% block content_layout %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Pokebatalla</title>
+</head>
+<body>
+{% block content %}    
+    {% from 'macros.html' import render_field %}
+
+        <form class="" method="post">
+            <table style="width:10%; border-style: none">
+                <tr>
+                    <td>
+                        {{ render_field(form.pokemonIngresado) }}
+                    </td>
+                    <td>
+                        <button type="submit" class="btn success" name="consulta_pokemon">Enviar</button>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="" style="overflow-y: auto;">
+                {% if data %}
+                <img src={{ 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{}.png'.format(data[(data|length)-2]) }}
+                    alt={{ data[(data|length)] }} width="200" height="200">
+                <img src={{ 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{}.png'.format(data[(data|length)-1]) }}
+                    alt={{ data[(data|length)-1] }} width="200" height="200">
+                {% endif %}
+                <table>
+                    <tr>
+                        <th>Resumen batalla</th>
+                    </tr>
+                    {% for value in range((data|length)-2) %}
+                    <tr>
+                        <td>{{ data[value] }}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+            </div>
+        </form>
+
+{%  endblock %}
+</body>
+</html>
+{%  endblock %}

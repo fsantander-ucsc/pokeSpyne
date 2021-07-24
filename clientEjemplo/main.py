@@ -79,6 +79,29 @@ def safari():
         
     return render_template('services/safari_pokemon.html', data = data)
 
+# Servicio pokehoroscopo
+@app.route('/servicePokeHoroscopo', methods=['GET','POST'])
+def servicePokeHoroscopo():
+    horoscopo_form = forms.pokeHoroscopoForm(request.form)
+    data = None
+
+    if request.method=='POST':
+        data = rpc_client.service.pokehoroscopo(horoscopo_form.anho.data)
+        data = json.loads(data) 
+
+    return render_template('services/pokehoroscopo.html', form = horoscopo_form, data=data)
+
+# Servicio pokebatalla
+@app.route('/servicePokeBatalla', methods=['GET','POST'])
+def servicePokeBatalla():
+    lista=["charmander","eevee"]
+    batalla_form = forms.pokeBatallaForm(lista)#forms.pokeBatallaForm(request.form)
+    myList=[]
+    if request.method=='POST':
+        myList = rpc_client.service.pokebatalla(batalla_form.pokemonIngresado.data) 
+
+    return render_template('services/pokebatalla.html', form = batalla_form, data=myList)
+
 # Parámentros de inicio de la aplicación
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')
