@@ -51,6 +51,7 @@ class Pokemon(ServiceBase):
 
     @rpc( _returns = Unicode)
     def safariPokemon(ctx):
+        
         print("entrada")
         elemento = baseDatos()        
         return elemento.safariPokemon();
