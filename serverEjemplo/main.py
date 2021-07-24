@@ -249,10 +249,19 @@ class Pokemon(ServiceBase):
         resumenBatalla.append(statsPokemonIngresado["id"])   
         resumenBatalla.append(str(idPokemonRandom))
 
+<<<<<<< HEAD
                 
         for i in resumenBatalla:
             yield u''+i
     
+=======
+    @rpc( _returns = Unicode)
+    def safariPokemon(ctx):
+        print("entrada")
+        elemento = baseDatos()        
+        return elemento.safariPokemon();
+
+>>>>>>> 671eb8febddcafc0446f88adcd3ac46a1a350a16
 
 #hola
 #Crear un ejemplar de la aplicación, indicando los protocolos de entrada y salidad.

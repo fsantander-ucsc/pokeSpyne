@@ -1,9 +1,15 @@
 import sqlite3
 import json
+from random import seed
+from random import randint
 
 class baseDatos:
 
     URL = "pokeBaseDatos.db"
+    pokemonSafari = ""
+    cantidadPokebola="10"
+    probabilidadHuir="20"
+    probabilidadCaptura="20"
 
     def recuperarStatsPokemon(self,idPokemon):
         con = sqlite3.connect("pokeBaseDatos.db")
@@ -28,6 +34,7 @@ class baseDatos:
             #asd
             return json_dump
 
+<<<<<<< HEAD
     #Se define metodo necesario para recuperar el nombre de un pokemon de acuerdo a su id
     def recuperaNombrePokemon(self,idPokemon):
         con = sqlite3.connect("pokeBaseDatos.db")
@@ -86,3 +93,19 @@ class baseDatos:
             return json_dump
 
     
+=======
+    def safariPokemon(self):
+     
+        seed(1)
+        idPokemon = randint(0, 721)
+
+        con = sqlite3.connect("pokeBaseDatos.db")
+        cur = con.cursor()
+        
+        for row in cur.execute('SELECT * FROM pokemon WHERE id='+str(idPokemon)):
+            data_set = {'id':str(row[0]),'nombre':str(row[1]),'msg':row[1]+' Salvaje ha aparecido!'} 
+            json_dump = json.dumps(data_set)
+        
+        print("json_dump")
+        return json_dump
+>>>>>>> 671eb8febddcafc0446f88adcd3ac46a1a350a16
