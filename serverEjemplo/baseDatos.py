@@ -93,8 +93,6 @@ class baseDatos:
             json_dump = json.dumps(data_set)
             return json_dump
 
-    
-=======
     def safariPokemon(self):
      
         self.cantidadPokebola = 10

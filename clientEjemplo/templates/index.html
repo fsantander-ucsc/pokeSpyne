@@ -1,66 +1,37 @@
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
-    <title>My Flask App</title>
-  </head>
-  <body>
-    <div class="topnav">
-     <a class="active" href=/>Home</a>
-     <a href=/service1>Say Hello</a>
-     <a href=/service2>Sum</a>
-     <a href=/service3>List Hello</a>
-     <a href=/ConsultaPokemon>Consulta Pokemon</a>
-     <a href=/servicePokeHoroscopo>Horoscopo Pokemon</a>
-     <a href=/servicePokeBatalla>Batalla Pokemon</a>
-    </div>
-    <h1>Ejemplo web Services con RPC</h1>
-    <div class="">
-      <a href=/service1 style="text-decoration: none">
-        <button type=" button" class="btn success block" name="button1"> Saludar </button>
-      </a>
-    </div>
-    <div class="">
-      <br>
-    </div>
-    <div class="">
-      <a href=/service2 style="text-decoration: none">
-        <button type="button" class="btn success block" name="button2"> Suma </button>
-      </a>
-    </div>
-    <div class="">
-      <br>
-    </div>
-    <div class="">
-      <a href=/service3 style="text-decoration: none">
-        <button type="button" class="btn success block" name="button2"> Suma </button>
-      </a>
-    </div>
-    
-    <div class="">
-      <br>
-    </div>
-    <div class="">
-      <a href=/ConsultaPokemon style="text-decoration: none">
-        <button type="button" class="btn success block" name="button4"> Consulta Pokemon </button>
-      </a>
-    </div>
-    <div class="">
-      <br>
-    </div>
-    <div class="">
-      <a href=/servicePokeHoroscopo style="text-decoration: none">
-        <button type="button" class="btn success block" name="button5"> Horoscopo Pokemon </button>
-      </a>
-    </div>
-    <div class="">
-      <br>
-    </div>
-    <div class="">
-      <a href=/servicePokeBatalla style="text-decoration: none">
-        <button type="button" class="btn success block" name="button6"> Batalla Pokemon </button>
-      </a>
-    </div>
-  </body>
-</html>
+<!-- Extienden su Layout -->
+{% extends 'templateLayout.html' %}
+<!-- Definen Cuál es su link activo -->
+{% block Index %}active{% endblock %}
+
+<!-- Escritura del dentro del layout, básicamente su función va acá -->
+{% block content_layout %}
+ 
+{% block content %}
+<h1>Ejemplo web Services con RPC</h1>
+
+<div class="">
+  <br>
+</div>
+<div class="">
+  <a href=/ConsultaPokemon style="text-decoration: none">
+    <button type="button" class="btn success block" name="button4"> Consulta Pokemon </button>
+  </a>
+</div>
+<div class="">
+  <br>
+</div>
+<div class="">
+  <a href=/servicePokeHoroscopo style="text-decoration: none">
+    <button type="button" class="btn success block" name="button5"> Horoscopo Pokemon </button>
+  </a>
+</div>
+<div class="">
+  <br>
+</div>
+<div class="">
+  <a href=/servicePokeBatalla style="text-decoration: none">
+    <button type="button" class="btn success block" name="button6"> Batalla Pokemon </button>
+  </a>
+</div>
+{%  endblock %}
+{%  endblock %}

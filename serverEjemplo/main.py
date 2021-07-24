@@ -74,8 +74,7 @@ class Pokemon(ServiceBase):
             yield u'Hello, %s' % name   
 
     @rpc(Integer, _returns = Unicode)
-    def consultaPokemon(ctx,idPokemon):
-        elemento = baseDatos()        
+    def consultaPokemon(ctx,idPokemon):          
         return elemento.recuperarStatsPokemon(idPokemon)
     
     # Servicio horoscopo
