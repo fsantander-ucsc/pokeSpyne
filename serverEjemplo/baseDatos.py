@@ -10,7 +10,7 @@ class baseDatos:
     cantidadPokebola=10
     probabilidadHuir=20
     probabilidadCaptura=20   
-    arrayPokemon =[] 
+    arrayPokemon =["EEVEE"] 
 
     def recuperarStatsPokemon(self,idPokemon):
         con = sqlite3.connect("pokeBaseDatos.db")
@@ -131,7 +131,8 @@ class baseDatos:
         if self.probabilidad(self.probabilidadCaptura):
             msg = "Has Capturado a " + self.pokemonSafari[1];
             estado =False
-            #self.arrayPokemon.apend(self.pokemonSafari[1])
+            self.arrayPokemon.append(self.pokemonSafari[1])
+            print(self.arrayPokemon)
             #listaPokemon.add(this.pokemonSafari);
         else:
             if self.probabilidad(self.probabilidadHuir):
@@ -193,8 +194,11 @@ class baseDatos:
         json_dump = json.dumps(data_set)
         print(json_dump)
         return json_dump
-
     
+    def listaSafari(self):
+        for i in listaPokemon:
+            yield u''+i
+
 
     
     

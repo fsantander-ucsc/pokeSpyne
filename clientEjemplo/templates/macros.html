@@ -1,7 +1,7 @@
 {% macro render_field(field)%}
 
 
-  <table style="width:20%">    
+  <table style="width:auto">    
     <tr>
       <td>{{field.label}}</td>
       <td>{{field(**kwargs) | safe}}</td>

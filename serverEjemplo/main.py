@@ -272,7 +272,10 @@ class Pokemon(ServiceBase):
     @rpc(_returns = Unicode)
     def huir(ctx):    
         return Pokemon.elemento.huir();
-
+    @rpc( _returns = Iterable(Unicode))    
+    def listaSafari(ctx):    
+        for i in Pokemon.elemento.arrayPokemon:
+            yield u''+i
 
 #hola
 #Crear un ejemplar de la aplicación, indicando los protocolos de entrada y salidad.

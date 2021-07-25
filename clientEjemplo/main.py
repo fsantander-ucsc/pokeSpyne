@@ -12,6 +12,7 @@ wsdl='http://localhost:8000/?wsdl'
 settings = Settings(strict=True,xml_huge_tree=True)
 rpc_client = Client(wsdl=wsdl,settings=settings)
 
+lista=["eevee"]
 #Ejemplar Flask para generar la app
 app = Flask(__name__)
 
@@ -75,7 +76,8 @@ def safari():
         elif mensaje == "huir":
             data = rpc_client.service.huir()
        
-        data = json.loads(data)        
+        data = json.loads(data)       
+
         
     return render_template('services/safari_pokemon.html', data = data)
 
@@ -94,9 +96,11 @@ def servicePokeHoroscopo():
 # Servicio pokebatalla
 @app.route('/servicePokeBatalla', methods=['GET','POST'])
 def servicePokeBatalla():
-    lista=["charmander","eevee"]
-    batalla_form = forms.pokeBatallaForm(lista)#forms.pokeBatallaForm(request.form)
+    dato=rpc_client.service.listaSafari()
+    print(dato)   
+    batalla_form = forms.pokeBatallaForm(dato)#forms.pokeBatallaForm(request.form)
     myList=[]
+
     if request.method=='POST':
         myList = rpc_client.service.pokebatalla(batalla_form.pokemonIngresado.data) 
 
