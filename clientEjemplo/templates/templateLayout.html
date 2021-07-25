@@ -10,25 +10,25 @@
 </head>
 
 <body>
-    <div class="topnav">
-        <a href= / class="{% block Index %}{% endblock %}">Home</a>
-        <!--  
-        <a href=/service1 class="{% block service1 %}{% endblock %}">Say Hello</a> 
-        <a href=/service2 class="{% block service2 %}{% endblock %}">Sum </a> 
-        <a href=/service3 class="{% block service4 %}{% endblock %}">List Hello</a> 
-        -->
-        <a href=/ConsultaPokemon class="{% block ConsultaPokemon %}{% endblock %}">Consulta Pokemon</a>
-        <a href=/SafariPokemon class="{% block SafariPokemon %}{% endblock %}">Safari Pokemon</a>
-        <a href=/servicePokeHoroscopo class="{% block servicePokeHoroscopo %}{% endblock %}">Horoscopo Pokemon</a>
-        <a href=/servicePokeBatalla class="{% block servicePokeBatalla %}{% endblock %}">Batalla Pokemon</a>
+    <div class="header">
+        <h1>PokeServicios</h1>
+    </div>
+    <ul>
+        <li><a href= / class="{% block Index %}{% endblock %}">Home</a></li>
+        <li><a href=/ConsultaPokemon class="{% block ConsultaPokemon %}{% endblock %}">Consulta Pokemon</a></li>
+        <li><a href=/SafariPokemon class="{% block SafariPokemon %}{% endblock %}">Safari Pokemon</a></li>
+        <li> <a href=/servicePokeHoroscopo class="{% block servicePokeHoroscopo %}{% endblock %}">Horoscopo Pokemon</a>
+        </li>
+        <li> <a href=/servicePokeBatalla class="{% block servicePokeBatalla %}{% endblock %}">Batalla Pokemon</a></li>
+    </ul>
 
 
+    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+        {% block content_layout %}
+        <!-- Acá se crea se crea su codigo -->
+        {% endblock %}
 
     </div>
-
-    {% block content_layout %}
-    <!-- Acá se crea se crea su codigo -->
-    {% endblock %}
 
 </body>
 

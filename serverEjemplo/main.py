@@ -75,7 +75,7 @@ class Pokemon(ServiceBase):
 
     @rpc(Integer, _returns = Unicode)
     def consultaPokemon(ctx,idPokemon):          
-        return elemento.recuperarStatsPokemon(idPokemon)
+        return Pokemon.elemento.recuperarStatsPokemon(idPokemon)
     
     # Servicio horoscopo
     @rpc(Integer, _returns=Unicode)
