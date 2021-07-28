@@ -33,7 +33,8 @@ def hitChance():
 #Clase principal, donde se inician los servicios (Objeto remoto)
 
 class Pokemon(ServiceBase):
-
+    
+    #Elemento para acceder a los servicios de las clase baseDatos
     elemento = baseDatos()   
 
     """Tres comillas para documentar"""
@@ -64,20 +65,16 @@ class Pokemon(ServiceBase):
     #Servicio lista
     @rpc(Unicode, Integer, _returns = Iterable(Unicode))
     def list_hello(ctx, name, times):
-        """
-        """
+        
         for i in range(times):
             #yield = es como un return
             #no retorna automáticamente
             #se mantiene en el for y como que lo itera
             #cuando se tienen todos los datos listos lo retorna
             yield u'Hello, %s' % name   
-
-    @rpc(Integer, _returns = Unicode)
-    def consultaPokemon(ctx,idPokemon):          
-        return Pokemon.elemento.recuperarStatsPokemon(idPokemon)
     
     # Servicio horoscopo
+   
     @rpc(Integer, _returns=Unicode)
     def pokehoroscopo(ctx,anho):
         bd = baseDatos()
@@ -256,7 +253,13 @@ class Pokemon(ServiceBase):
         for i in resumenBatalla:
             yield u''+i
     
-
+    #Servicio de consulta pokemon en base a una ID
+    @rpc(Integer, _returns = Unicode)
+    def consultaPokemon(ctx,idPokemon):          
+        return Pokemon.elemento.recuperarStatsPokemon(idPokemon)
+        
+    #---Inicio servicios safari ---    
+    #Servicio para iniciar e inicializar el Safari
     @rpc( _returns = Unicode)
     def safariPokemon(ctx):
         return Pokemon.elemento.safariPokemon();
@@ -276,7 +279,7 @@ class Pokemon(ServiceBase):
     def listaSafari(ctx):    
         for i in Pokemon.elemento.arrayPokemon:
             yield u''+i
-
+    #--- Fin servicios Safari ----
 #hola
 #Crear un ejemplar de la aplicación, indicando los protocolos de entrada y salidad.
 application = Application([Pokemon],'spyne.examples.hello.soap',

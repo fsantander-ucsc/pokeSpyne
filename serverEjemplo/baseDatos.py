@@ -11,8 +11,15 @@ class baseDatos:
     probabilidadHuir=20
     probabilidadCaptura=20   
     arrayPokemon =["EEVEE"] 
+    
 
+
+    '''
+    @param int id Pokemon 
+    @return json con la información del pokemon consultado
+    '''
     def recuperarStatsPokemon(self,idPokemon):
+        #Se abre la base de datos
         con = sqlite3.connect("pokeBaseDatos.db")
         cur = con.cursor()
         
@@ -93,9 +100,22 @@ class baseDatos:
             json_dump = json.dumps(data_set)
             return json_dump
 
+
+
+
     def safariPokemon(self):
      
+        '''
+        En el flujo de la función primero se devuelve un pokemon de manera random
+        despues se puede elegir entre 3 opciones que ayudan en la captura del pokemon
+        1) Lanzar pokebola
+        2) Arrojar Baya
+        3) Arrojar Piedra
+        Al finalizar cada movimiento existe una probabilidad de huída para el pokemon
+        Como última opción se tiene HUIR
+        '''
         self.cantidadPokebola = 10
+        #Se define un pokemon randomico para iniciar la función
         idPokemon = randint(0, 721)
         
         con = sqlite3.connect("pokeBaseDatos.db")
@@ -111,8 +131,8 @@ class baseDatos:
         return json_dump
     
     def probabilidad(self,probabilidad):
-        #retorna True o False dependiendo si el número random generado generado y la probabilidad ingresada
-        
+        #retorna True o False dependiendo al comparar el numero random generado con la probabilidad ingresada
+                
         fallo = randint(0, 100)
 
         if fallo >= probabilidad :
@@ -154,13 +174,14 @@ class baseDatos:
         return json_dump
     
     def arrojarPiedra(self):
-
+        #Arrojar una piedra aumenta la probabilidad de camptura
+        #despues del movimiento el pokemon puede huír
         if self.probabilidad(self.probabilidadHuir):
             msg = self.pokemonSafari[1] + " ha huido";
             estado = False
         else :
             self.probabilidadCaptura += 5;
-            msg = "El pokemon parece enfurecido";
+            msg = "El pokemon parece enfurecido Pokebolas restantes: " + str(self.cantidadPokebola);
             estado = True
         
         data_set = {'id':str(self.pokemonSafari[0]),'nombre':str(self.pokemonSafari[1]),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
@@ -170,6 +191,9 @@ class baseDatos:
         return json_dump
     
     def arrojarBaya(self):
+        #Arrojar una baya puede disminuír la probabilidad de huída
+        #pero baja la probabilidad de captura
+        #despues del movimiento el pokemon puede huir
 
         self.probabilidadHuir -= 5;
         if self.probabilidad(self.probabilidadHuir):
@@ -177,7 +201,7 @@ class baseDatos:
             estado = False
         else :
             self.probabilidadCaptura -= 5;
-            msg = "El pokemon parece interesado";
+            msg = "El pokemon parece interesado Pokebolas restantes: " + str(self.cantidadPokebola);
             estado = True
         
         data_set = {'id':str(self.pokemonSafari[0]),'nombre':str(self.pokemonSafari[1]),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         

@@ -57,12 +57,18 @@ def consultaPokemon():
     data=None
     if request.method == 'POST':
         data = rpc_client.service.consultaPokemon(consultaPokemon.pokemon.data)
+        '''
+        se trasnforma la data recepcionada a un diccionario
+        '''
         data = json.loads(data)
     return render_template('services/consulta_pokemon.html',form = consultaPokemon, data = data)
 
 @app.route('/SafariPokemon',methods=['GET','POST'])
 def safari():
     data=None
+    """
+    se ejecutan difeerntes llamadas al servidor dependiendo de valor enviado por el botón
+    """
     if request.method == 'POST':
         mensaje = request.form["accion"]
         if mensaje =="init":

@@ -5,12 +5,12 @@
 
 <!-- Escritura dentro del layout, básicamente su función va acá -->
 {% block content_layout %}
-
+<h1>Safari Pokemon</h1>
 {% block content %}
 {% from 'macros.html' import render_field %}
 
 <form class="" method="post">
-    <br>
+    
     <div class="">
         {% if data %}
         <button type="submit" class="btn disabled" disabled>Comenzar Safari</button>
@@ -23,7 +23,9 @@
         {% if data %}
 
         <h3> {{ data["msg"] }} </h3>
+         <!-- 
         {{ data }}
+         --> 
         <br>
         <table style="width: auto">
             <tr>
