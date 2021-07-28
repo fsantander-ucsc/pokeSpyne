@@ -26,6 +26,9 @@ class safariPokemon(Form):
 class pokeHoroscopoForm(Form):
     anho = IntegerField('año')
 
+class pokeBankForm(Form):
+    agregar = IntegerField('Agregar Coins')
+
 def pokeBatallaForm(listaPokemonActualizada):
     class MyForm(Form):
         pokemonIngresado = SelectField(u'Selecciona tu Pokemon', choices = listaPokemonActualizada)

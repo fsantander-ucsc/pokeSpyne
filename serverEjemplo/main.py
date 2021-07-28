@@ -276,6 +276,18 @@ class Pokemon(ServiceBase):
     def listaSafari(ctx):    
         for i in Pokemon.elemento.arrayPokemon:
             yield u''+i
+            
+    @rpc(_returns = Integer)
+    def getBalance(ctx):
+        return Pokemon.elemento.getBalance()
+    
+    @rpc(Integer, _returns = Integer)
+    def agregarAlBalance(ctx, monto):
+        return Pokemon.elemento.agregarMonto(monto)
+    
+    @rpc(Integer, _returns = Integer)
+    def quitarAlBalance(ctx, monto):
+        return Pokemon.elemento.quitarMonto(monto)
 
 #hola
 #Crear un ejemplar de la aplicación, indicando los protocolos de entrada y salidad.

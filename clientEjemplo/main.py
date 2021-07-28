@@ -106,6 +106,15 @@ def servicePokeBatalla():
 
     return render_template('services/pokebatalla.html', form = batalla_form, data=myList)
 
+# Servicio PokeBank
+@app.route('/servicePokeBanco', methods=['GET', 'POST'])
+def servicePokeBank():
+    bankForm = forms.pokeBankForm(request.form)
+    data = rpc_client.service.getBalance()
+    if(request.method == 'POST'):
+        data = rpc_client.service.agregarAlBalance(bankForm.agregar.data)
+    return render_template('services/poke_bank.html', form = bankForm, data = data)
+
 # Parámentros de inicio de la aplicación
 if __name__ == '__main__':
     app.run(debug = True, host='0.0.0.0')

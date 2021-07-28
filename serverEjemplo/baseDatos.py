@@ -10,7 +10,9 @@ class baseDatos:
     cantidadPokebola=10
     probabilidadHuir=20
     probabilidadCaptura=20   
-    arrayPokemon =["EEVEE"] 
+    arrayPokemon =["EEVEE"]
+
+    pokeBalance = 0
 
     def recuperarStatsPokemon(self,idPokemon):
         con = sqlite3.connect("pokeBaseDatos.db")
@@ -199,7 +201,16 @@ class baseDatos:
         for i in listaPokemon:
             yield u''+i
 
+    def getBalance(self):
+        return self.pokeBalance
 
+    def agregarMonto(self, monto):
+        self.pokeBalance += monto
+        return self.pokeBalance
     
-    
-
+    def quitarMonto(self, monto):
+        if(self.pokeBalance < monto):
+            self.pokeBalance = 0
+        else:
+            self.pokeBalance -= monto
+        return self.pokeBalance
