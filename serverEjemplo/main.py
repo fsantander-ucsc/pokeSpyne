@@ -231,19 +231,17 @@ class Pokemon(ServiceBase):
                 if hp1 > hp2:
                     resumenTurno = resumenTurno + " " + nombre1 + " ES EL GANADOR"
                     #Se agrega dinero si el pokemon1 coincide con el ingresado, en caso contrario se resta
-                    #if(nombre1.equals(pokemonIngresado)){
-                    #    agregarDinero(100);
-                    #}else{
-                    #    quitarDinero(50);
-                    #}
+                    if(nombre1==pokemonIngresado):
+                        Pokemon.elemento.agregarMonto(100)
+                    else:
+                        Pokemon.elemento.quitarMonto(50)
                 else:
                     resumenTurno = resumenTurno + " " + nombre2 + " ES EL GANADOR"
                     #Se agrega dinero si el pokemon1 coincide con el ingresado, en caso contrario se resta
-                    #if(nombre2.equals(pokemonIngresado)){
-                    #    agregarDinero(100);
-                    #}else{
-                    #    quitarDinero(50);
-                    #}
+                    if(nombre2==pokemonIngresado):
+                        Pokemon.elemento.agregarMonto(100)
+                    else:
+                        Pokemon.elemento.quitarMonto(50)
                 resumenBatalla.append(resumenTurno)
         resumenBatalla.append(statsPokemonIngresado["id"])   
         resumenBatalla.append(str(idPokemonRandom))
