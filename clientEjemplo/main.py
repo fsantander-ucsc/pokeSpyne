@@ -65,6 +65,8 @@ def consultaPokemon():
 
 @app.route('/SafariPokemon',methods=['GET','POST'])
 def safari():
+
+    coins = rpc_client.service.getBalance()
     data=None
     """
     se ejecutan difeerntes llamadas al servidor dependiendo de valor enviado por el botón
@@ -85,7 +87,7 @@ def safari():
         data = json.loads(data)       
 
         
-    return render_template('services/safari_pokemon.html', data = data)
+    return render_template('services/safari_pokemon.html', data = data,coins=coins)
 
 # Servicio pokehoroscopo
 @app.route('/servicePokeHoroscopo', methods=['GET','POST'])
@@ -130,11 +132,11 @@ def servicePokeLista():
     else:
         myList = rpc_client.service.listaSafariCompleto()
     
-    print(myList)
+    
     data=[]
     for value in myList:
         data.append(json.loads(value))
-    print(data)
+  
     return render_template('services/listaPokemon.html', data = data)
 
 # Parámentros de inicio de la aplicación
