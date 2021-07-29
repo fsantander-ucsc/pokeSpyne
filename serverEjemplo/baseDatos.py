@@ -9,7 +9,7 @@ class baseDatos:
     pokemonSafari = ""
     cantidadPokebola=10
     probabilidadHuir=20
-    probabilidadCaptura=100   
+    probabilidadCaptura=60   
     arrayPokemon =[{'id': '133', 'nombre': "EEVEE"}] 
 
     pokeBalance = 0
@@ -119,6 +119,8 @@ class baseDatos:
         self.cantidadPokebola = 10
         #Se define un pokemon randomico para iniciar la función
         idPokemon = randint(0, 721)
+
+        sef.quitarAlBalance(500)
         
         con = sqlite3.connect("pokeBaseDatos.db")
         cur = con.cursor()
