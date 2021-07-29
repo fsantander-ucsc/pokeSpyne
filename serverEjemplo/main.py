@@ -276,10 +276,32 @@ class Pokemon(ServiceBase):
     def huir(ctx):    
         return Pokemon.elemento.huir();
     @rpc( _returns = Iterable(Unicode))    
-    def listaSafari(ctx):    
+    def listaSafari(ctx):
+        print(Pokemon.elemento.arrayPokemon)    
         for i in Pokemon.elemento.arrayPokemon:
-            yield u''+i
+            yield u''+i['nombre']
+
+   #Esta funcionalidad regresa toda la información
+    @rpc( _returns = Iterable(Unicode))    
+    def listaSafariCompleto(ctx):
+        print(Pokemon.elemento.arrayPokemon)     
+        for i in Pokemon.elemento.arrayPokemon:
+            yield u''+json.dumps(i)
     #--- Fin servicios Safari ----
+
+    @rpc(_returns = Integer)
+    def getBalance(ctx):
+        return Pokemon.elemento.getBalance()
+    
+    @rpc(Integer, _returns = Integer)
+    def agregarAlBalance(ctx, monto):
+        return Pokemon.elemento.agregarMonto(monto)
+    
+    @rpc(Integer, _returns = Integer)
+    def quitarAlBalance(ctx, monto):
+        return Pokemon.elemento.quitarMonto(monto)
+
+    
 #hola
 #Crear un ejemplar de la aplicación, indicando los protocolos de entrada y salidad.
 application = Application([Pokemon],'spyne.examples.hello.soap',

@@ -1,19 +1,7 @@
 from wtforms import Form
 from wtforms import DecimalField, IntegerField, StringField, FieldList, TextField, SelectField
 from flask import request
-class HelloForm(Form):
-    """docstring for HelloForm."""
-    name = StringField('name')
 
-class SumForm(Form):
-    """docstring for SumForm."""
-    param1 = IntegerField('param1')
-    param2 = IntegerField('param2')
-
-class ListHelloForm(Form):
-    """docstring for SumForm."""
-    name = StringField('name')
-    times = IntegerField('times')
 
 class consultaPokemon(Form):
     """docstring for SumForm."""
@@ -25,6 +13,9 @@ class safariPokemon(Form):
 
 class pokeHoroscopoForm(Form):
     anho = IntegerField('año')
+
+class pokeBankForm(Form):
+    agregar = IntegerField('Agregar Coins')
 
 def pokeBatallaForm(listaPokemonActualizada):
     class MyForm(Form):

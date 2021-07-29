@@ -1,0 +1,38 @@
+<!-- Extienden su Layout -->
+{% extends 'templateLayout.html' %}
+<!-- Definen Cuál es su link activo -->
+{% block servicePokeLista %}active{% endblock %}
+
+<!-- Escritura del dentro del layout, básicamente su función va acá -->
+{% block content_layout %}
+
+{% block content %}
+{% from 'macros.html' import render_field %}
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
+    <title>Servicio Lista</title>
+  </head>
+  <body>
+    <div class="" style="overflow-y: auto;">
+        <table style="width:auto">
+            <tr>
+                <th>Lista</th>
+                <th> asd </th>
+            </tr>
+            {% for value in data %}
+            <tr>
+                <td>{{ value["sprite"] }}</td>
+                <td><img src={{ 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/{}.png'.format(value["id"]) }}
+                  alt={{ value["nombre"] }}></td>
+            </tr>
+            {% endfor %}
+          </table>
+    </div>
+    {%  endblock %}
+</body>
+</html>
+{%  endblock %}
+

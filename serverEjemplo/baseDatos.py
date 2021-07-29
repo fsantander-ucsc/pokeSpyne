@@ -9,8 +9,10 @@ class baseDatos:
     pokemonSafari = ""
     cantidadPokebola=10
     probabilidadHuir=20
-    probabilidadCaptura=20   
-    arrayPokemon =["EEVEE"] 
+    probabilidadCaptura=100   
+    arrayPokemon =[{'id': '133', 'nombre': "EEVEE"}] 
+
+    pokeBalance = 0
     
 
 
@@ -122,9 +124,12 @@ class baseDatos:
         cur = con.cursor()
         
         for row in cur.execute('SELECT * FROM pokemon WHERE id='+str(idPokemon)):
-            self.pokemonSafari = row;
-            baseDatos.pokemonSafari = row;
+            
             data_set = {'id':str(row[0]),'nombre':str(row[1]),'msg':row[1]+' Salvaje ha aparecido!','estado':True,'pokebola':str(self.cantidadPokebola)} 
+            
+            self.pokemonSafari = {'id':str(row[0]),'nombre':str(row[1])}
+            baseDatos.pokemonSafari = {'id':str(row[0]),'nombre':str(row[1])}
+            
             json_dump = json.dumps(data_set)
         
         
@@ -149,14 +154,14 @@ class baseDatos:
         baseDatos.cantidadPokebola = baseDatos.cantidadPokebola - 1;     
 
         if self.probabilidad(self.probabilidadCaptura):
-            msg = "Has Capturado a " + self.pokemonSafari[1];
+            msg = "Has Capturado a " + self.pokemonSafari['nombre']
             estado =False
-            self.arrayPokemon.append(self.pokemonSafari[1])
+            self.arrayPokemon.append(self.pokemonSafari)
             print(self.arrayPokemon)
             #listaPokemon.add(this.pokemonSafari);
         else:
             if self.probabilidad(self.probabilidadHuir):
-                msg = self.pokemonSafari[1] + " ha huido"
+                msg = self.pokemonSafari['nombre'] + " ha huido"
                 estado=False
             else:
                 if self.cantidadPokebola == 0:
@@ -166,7 +171,7 @@ class baseDatos:
                     msg = "Fallaste! Pokebolas restantes: " + str(self.cantidadPokebola)
                     estado =True      
 
-        data_set = {'id':str(self.pokemonSafari[0]),'nombre':str(self.pokemonSafari[1]),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
+        data_set = {'id':str(self.pokemonSafari['id']),'nombre':str(self.pokemonSafari['nombre']),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
 
 
         json_dump = json.dumps(data_set)
@@ -177,14 +182,14 @@ class baseDatos:
         #Arrojar una piedra aumenta la probabilidad de camptura
         #despues del movimiento el pokemon puede huír
         if self.probabilidad(self.probabilidadHuir):
-            msg = self.pokemonSafari[1] + " ha huido";
+            msg = self.pokemonSafari['nombre'] + " ha huido";
             estado = False
         else :
             self.probabilidadCaptura += 5;
             msg = "El pokemon parece enfurecido Pokebolas restantes: " + str(self.cantidadPokebola);
             estado = True
         
-        data_set = {'id':str(self.pokemonSafari[0]),'nombre':str(self.pokemonSafari[1]),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
+        data_set = {'id':str(self.pokemonSafari['id']),'nombre':str(self.pokemonSafari['nombre']),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
 
         json_dump = json.dumps(data_set)
         print(json_dump)
@@ -197,14 +202,14 @@ class baseDatos:
 
         self.probabilidadHuir -= 5;
         if self.probabilidad(self.probabilidadHuir):
-            msg = self.pokemonSafari[1] + " ha huido";
+            msg = self.pokemonSafari['nombre'] + " ha huido";
             estado = False
         else :
             self.probabilidadCaptura -= 5;
             msg = "El pokemon parece interesado Pokebolas restantes: " + str(self.cantidadPokebola);
             estado = True
         
-        data_set = {'id':str(self.pokemonSafari[0]),'nombre':str(self.pokemonSafari[1]),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
+        data_set = {'id':str(self.pokemonSafari['id']),'nombre':str(self.pokemonSafari['nombre']),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
 
         json_dump = json.dumps(data_set)
         print(json_dump)
@@ -213,7 +218,7 @@ class baseDatos:
         
         msg = "Has huído"
         estado = False
-        data_set = {'id':str(self.pokemonSafari[0]),'nombre':str(self.pokemonSafari[1]),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
+        data_set = {'id':str(self.pokemonSafari['id']),'nombre':str(self.pokemonSafari['nombre']),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
         
         json_dump = json.dumps(data_set)
         print(json_dump)
@@ -223,6 +228,19 @@ class baseDatos:
         for i in listaPokemon:
             yield u''+i
 
+    def getBalance(self):
+        return self.pokeBalance
+
+    def agregarMonto(self, monto):
+        self.pokeBalance += monto
+        return self.pokeBalance
+    
+    def quitarMonto(self, monto):
+        if(self.pokeBalance < monto):
+            self.pokeBalance = 0
+        else:
+            self.pokeBalance -= monto
+        return self.pokeBalance
 
     
     
