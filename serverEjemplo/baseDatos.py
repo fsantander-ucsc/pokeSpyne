@@ -174,10 +174,7 @@ class baseDatos:
                     estado =True      
 
         data_set = {'id':str(self.pokemonSafari['id']),'nombre':str(self.pokemonSafari['nombre']),'msg':msg,'estado':estado,'pokebola':str(self.cantidadPokebola)}         
-
-
         json_dump = json.dumps(data_set)
-        print(json_dump)
         return json_dump
     
     def arrojarPiedra(self):
