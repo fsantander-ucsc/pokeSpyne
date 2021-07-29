@@ -120,7 +120,7 @@ class baseDatos:
         #Se define un pokemon randomico para iniciar la función
         idPokemon = randint(0, 721)
 
-        sef.quitarAlBalance(500)
+        self.quitarMonto(500)
         
         con = sqlite3.connect("pokeBaseDatos.db")
         cur = con.cursor()
